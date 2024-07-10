@@ -146,7 +146,6 @@ public class Main {
 
         todoManager.finishTodo(id);
         fileManager.saveTodos(todoManager.getTodos());
-        System.out.println("TODO marked as done.");
     }
 
     private static void deleteTodo() {
@@ -165,6 +164,5 @@ public class Main {
 
         todoManager.deleteTodo(id);
         fileManager.saveTodos(todoManager.getTodos());
-        System.out.println("TODO deleted.");
     }
 }

@@ -42,6 +42,7 @@ public class Todo {
     }
 
     public static Date parseDate(String date) throws IllegalArgumentException{
+        dateFormat.setLenient(false);
         try {
             return dateFormat.parse(date);
         }catch (ParseException e) {

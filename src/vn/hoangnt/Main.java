@@ -1,5 +1,6 @@
 package vn.hoangnt;
 import java.util.*;
+import java.text.*;
 
 public class Main {
     private static TodoManager todoManager = new TodoManager();
@@ -9,8 +10,7 @@ public class Main {
     public static void main(String[] args) {
         todoManager.setTodos(fileManager.loadTodos());
 
-        while (true) {
-            displayMainMenu();
+        while (true) {        displayMainMenu();
             String input = scanner.nextLine().trim();
 
             switch (input) {
@@ -23,6 +23,7 @@ public class Main {
                 case "3":
                     finishTodo();
                     break;
+
                 case "4":
                     deleteTodo();
                     break;
@@ -79,6 +80,9 @@ public class Main {
 
             try {
                 untilDate = Todo.parseDate(until);
+                if (!isValidDate(untilDate)) {
+                    throw new IllegalArgumentException("Invalid date. Please enter a valid date.");
+                }
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
@@ -90,6 +94,9 @@ public class Main {
         System.out.println("Saved!!!");
     }
 
+    private static boolean isValidDate(Date date) {
+        return date != null && date.after(new Date());
+    }
     private static void editTodo() {
         int id;
 
